@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.resume import Resume
@@ -30,6 +30,31 @@ def upload_curriculo(
         "mensagem": "Currículo Salvo com sucesso"
     }
 
+@router.get("/")
+def listar_curriculo(
+    db:Session = Depends(get_db)
+
+):
+    return db.query(Resume).all()
+
+@router.get("/{resume_id}")
+def buscar_curriculo(
+    resume_id: int,
+    db:Session = Depends(get_db)
+
+
+):
+    curriculo = (
+        db.query(Resume)
+        .filter(Resume.id == resume_id)
+        .first()
+    )
+    if curriculo is None:
+        raise HTTPException(
+            status_code=400,
+            detail= "Curriculo Não encontrado!"
+        )
+    return curriculo
 
 @router.get("/health")
 def health_check():
