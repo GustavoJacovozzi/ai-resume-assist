@@ -14,3 +14,10 @@ class ResumeResponse(BaseModel):
 
     class config:
         from_attributes = True
+
+class ResumeUpdate(BaseModel):
+    candidata_name: str
+    email: str
+    skills: str
+    resume_text: str
+    

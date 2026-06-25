@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.resume import Resume
-from app.schemas.resume import ResumeCreate
+from app.schemas.resume import ResumeCreate, ResumeUpdate
 
 
 router = APIRouter(
@@ -61,3 +61,28 @@ def health_check():
     return {
         "Mensagem": "Vericando API"
     }   
+
+@router.delete("/{resume_id}")
+def deletar_curriculo(
+    resume_id: int,
+    db: Session = Depends(get_db)
+
+):
+    curriculo = (
+        db.query(Resume)
+        .filter(resume_id==resume_id)
+        .first()
+
+    )
+
+    if curriculo is None:
+        raise HTTPException(
+            status_code= 404,
+            detail= "Curriculo Não encontrado"
+
+        )
+    db.delete(curriculo)
+    db.commit()
+    return{
+        "Mensagem": "Curriculo Removido com Sucesso"
+    }
