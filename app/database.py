@@ -1,13 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL= "sqlite:///./resume.db"
+DATABASE_URL="postgresql://postgres:gustavo123@localhost:5432/airesume"
 
-engine = create_engine(
 
-DATABASE_URL,
-connect_args={"check_same_thread": False}
-)
+engine = create_engine(DATABASE_URL)
 
 
 SessionLocal = sessionmaker(
