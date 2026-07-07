@@ -1,27 +1,15 @@
-
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
+*.pyd
 
-venv/
 .env
-
-
+venv/
 .vscode/
-.idea/
 
-
-*.db
-
-
-*.log
-
+resume.db
 
 .pytest_cache/
 .mypy_cache/
-
-
-uploads/
-
 
 .DS_Store
