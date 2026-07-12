@@ -35,7 +35,7 @@ https://ai-resume-assist.onrender.com/docs
 ## Swagger
 
 <p align="center">
-<img src="assets/swagger.png" width="90%">
+<img src="assetsswagger.png" width="90%">
 </p>
 
 ---
