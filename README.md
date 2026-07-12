@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="banner.png" width="100%">
+</p>
+
+# AI Resume Assist
 # AI Resume Assist
 
 Backend application that analyzes PDF resumes using Google's Gemini AI.
