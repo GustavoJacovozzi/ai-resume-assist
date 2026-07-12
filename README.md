@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.png" width="100%">
+  <img src="assets/banner.png" width="100%">
 </p>
 
 # AI Resume Assist
@@ -10,19 +10,41 @@
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED)
 ![Google Gemini](https://img.shields.io/badge/Google-Gemini-orange)
 
-Backend application that analyzes PDF resumes using Google Gemini AI.
+AI Resume Assist is a backend application that analyzes PDF resumes using Google Gemini AI.
 
-The application extracts text from PDF files, generates structured candidate information, compares resumes against job descriptions and stores the results in PostgreSQL.
+The application extracts text from PDF files, identifies technologies and experience, generates professional summaries, compares resumes with job descriptions and stores the results in PostgreSQL.
 
-The project was developed as a practical study of AI integration in backend applications using FastAPI, SQLAlchemy and Docker.
+This project was developed to practice building production-style backend applications with FastAPI, Docker, PostgreSQL and Generative AI.
 
 ---
 
-# Live Demo
+# 🚀 Live Demo
+
+### API
+
+https://ai-resume-assist.onrender.com
 
 ### Swagger Documentation
 
 https://ai-resume-assist.onrender.com/docs
+
+---
+
+# 📷 Screenshots
+
+## Swagger
+
+<p align="center">
+<img src="assets/swagger.png" width="90%">
+</p>
+
+---
+
+## Resume Comparison
+
+<p align="center">
+<img src="comparison.png" width="90%">
+</p>
 
 ---
 
@@ -54,14 +76,17 @@ https://ai-resume-assist.onrender.com/docs
 # Features
 
 - Upload PDF resumes
-- Extract text using PyMuPDF
-- AI-powered resume analysis
-- Resume and job description comparison
+- Automatic text extraction with PyMuPDF
+- Resume analysis using Google Gemini AI
+- Technology detection
+- Experience estimation
+- Professional summary generation
+- Resume vs Job Description comparison
 - Structured JSON responses
 - PostgreSQL persistence
 - REST API built with FastAPI
+- Docker environment
 - Interactive Swagger documentation
-- Docker support
 
 ---
 
@@ -73,10 +98,11 @@ https://ai-resume-assist.onrender.com/docs
 | FastAPI | REST API |
 | SQLAlchemy | ORM |
 | PostgreSQL | Database |
-| Google Gemini | AI Processing |
+| Google Gemini | AI Analysis |
 | PyMuPDF | PDF Extraction |
 | Docker | Containerization |
 | Docker Compose | Local Development |
+| Render | Cloud Deployment |
 
 ---
 
@@ -94,6 +120,12 @@ app/
 ├── create_db.py
 └── main.py
 
+assets/
+│
+├── banner.png
+├── swagger.png
+└── comparison.png
+
 Dockerfile
 docker-compose.yml
 requirements.txt
@@ -106,13 +138,13 @@ README.md
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
-| POST | /resume/ | Create resume |
-| GET | /resume/ | List resumes |
-| GET | /resume/{id} | Get resume |
-| PUT | /resume/{id} | Update resume |
-| DELETE | /resume/{id} | Delete resume |
-| POST | /resume/upload/{id} | Upload PDF and analyze |
-| POST | /resume/compare/{id} | Compare with job description |
+| POST | /resume/ | Create Resume |
+| GET | /resume/ | List Resumes |
+| GET | /resume/{id} | Get Resume |
+| PUT | /resume/{id} | Update Resume |
+| DELETE | /resume/{id} | Delete Resume |
+| POST | /resume/upload/{id} | Upload and Analyze PDF |
+| POST | /resume/compare/{id} | Compare Resume with Job Description |
 | GET | /resume/health | Health Check |
 
 ---
@@ -139,7 +171,7 @@ GEMINI_API_KEY=your_gemini_api_key
 DATABASE_URL=postgresql://postgres:gustavo123@db:5432/airesume
 ```
 
-Start Docker
+Run Docker
 
 ```bash
 docker compose up --build
@@ -153,64 +185,30 @@ http://localhost:8000/docs
 
 ---
 
-# Example Flow
-
-### Resume Analysis
+# Example Workflow
 
 ```
-Upload Resume PDF
-        │
-        ▼
-Extract Text
-        │
-        ▼
-Analyze with Gemini
-        │
-        ▼
-Save Analysis
-        │
-        ▼
-Return JSON
-```
+Upload Resume
 
----
+↓
 
-### Job Comparison
+Extract PDF Text
 
-```
-Resume
-      +
-Job Description
-        │
-        ▼
+↓
+
 Google Gemini
-        │
-        ▼
-Compatibility Score
-Missing Skills
-Strengths
-Weaknesses
-Suggestions
-```
 
----
+↓
 
-# Example Response
+Resume Analysis
 
-```json
-{
-  "compatibilidade": 87,
-  "habilidades_encontradas": [
-    "Python",
-    "FastAPI",
-    "Docker"
-  ],
-  "habilidades_faltantes": [
-    "AWS"
-  ],
-  "nivel": "Junior",
-  "resumo": "The candidate demonstrates good backend development skills with room to improve cloud technologies."
-}
+↓
+
+Save into PostgreSQL
+
+↓
+
+Return JSON
 ```
 
 ---
@@ -218,11 +216,10 @@ Suggestions
 # Future Improvements
 
 - JWT Authentication
-- Unit Tests with Pytest
+- Automated Tests
 - GitHub Actions CI/CD
-- Resume Version History
-- Background Tasks
-- Rate Limiting
+- Resume History
+- Async Background Tasks
 - Frontend Dashboard
 
 ---
