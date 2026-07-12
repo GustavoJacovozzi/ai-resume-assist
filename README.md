@@ -3,7 +3,6 @@
 </p>
 
 # AI Resume Assist
-# AI Resume Assist
 
 Backend application that analyzes PDF resumes using Google's Gemini AI.
 
